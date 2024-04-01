@@ -82,8 +82,8 @@ DATABASES = {
         'NAME': 'mydb',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'localhost',  # Ou l'adresse IP de votre serveur MySQL
-        'PORT': '3306',  # Par défaut, le port MySQL est 3306
+        'HOST': 'localhost',  
+        'PORT': '3306',  
     }
 }
 
