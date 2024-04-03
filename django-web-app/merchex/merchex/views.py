@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Advice, Care, Category, Pictures, Post, User, Verification
+from .models import Advice, Care, Category, Pictures, Post, User
 from rest_framework import generics
 from .serializers.advice_serializer import AdviceSerializer
 from .serializers.care_serializer import CareSerializer
@@ -13,23 +12,6 @@ from .serializers.user_serializer import UserSerializer
 
 
 ########## Vues des conseils #########
-
-# class AdviceListView(ListView):
-#     model = Advice
-
-# class AdviceCreateView(CreateView):
-#     model = Advice
-#     fields = '__all__'
-#     success_url = reverse_lazy('advice_list')
-
-# class AdviceUpdateView(UpdateView):
-#     model = Advice
-#     fields = '__all__'
-#     success_url = reverse_lazy('advice_list')
-
-# class AdviceDeleteView(DeleteView):
-#     model = Advice
-#     success_url = reverse_lazy('advice_list')
 
 class AdviceListAPIView(generics.ListAPIView):
     queryset = Advice.objects.all()
@@ -54,23 +36,6 @@ class AdviceDestroyAPIView(generics.DestroyAPIView):
 
 ########## Vues des gardes #########
 
-# class CareListView(ListView):
-#     model = Care
-
-# class CareCreateView(CreateView):
-#     model = Care
-#     fields = '__all__'
-#     success_url = reverse_lazy('care_list')
-
-# class CareUpdateView(UpdateView):
-#     model = Care
-#     fields = '__all__'
-#     success_url = reverse_lazy('care_list')
-
-# class CareDeleteView(DeleteView):
-#     model = Care
-#     success_url = reverse_lazy('care_list')
-
 class CareListAPIView(generics.ListAPIView):
     queryset = Care.objects.all()
     serializer_class = CareSerializer
@@ -93,23 +58,6 @@ class CareDestroyAPIView(generics.DestroyAPIView):
     
     
 ########## Vues des category #########
-
-# class CategoryListView(ListView):
-#     model = Category
-
-# class CategoryCreateView(CreateView):
-#     model = Category
-#     fields = '__all__'
-#     success_url = reverse_lazy('category_list')
-
-# class CategoryUpdateView(UpdateView):
-#     model = Category
-#     fields = '__all__'
-#     success_url = reverse_lazy('category_list')
-
-# class CategoryDeleteView(DeleteView):
-#     model = Category
-#     success_url = reverse_lazy('category_list')
 
 class CategoryListAPIView(generics.ListAPIView):
     queryset = Category.objects.all()
@@ -134,23 +82,6 @@ class CategoryDestroyAPIView(generics.DestroyAPIView):
 
 ########## Vues des pictures #########
 
-# class PicturesListView(ListView):
-#     model = Pictures
-
-# class PicturesCreateView(CreateView):
-#     model = Pictures
-#     fields = '__all__'
-#     success_url = reverse_lazy('pictures_list')
-
-# class PicturesUpdateView(UpdateView):
-#     model = Pictures
-#     fields = '__all__'
-#     success_url = reverse_lazy('pictures_list')
-
-# class PicturesDeleteView(DeleteView):
-#     model = Pictures
-#     success_url = reverse_lazy('pictures_list')
-
 class PicturesListAPIView(generics.ListAPIView):
     queryset = Pictures.objects.all()
     serializer_class = PictureSerializer
@@ -174,23 +105,6 @@ class PicturesDestroyAPIView(generics.DestroyAPIView):
     
 ########## Vues des posts #########
 
-# class PostListView(ListView):
-#     model = Post
-
-# class PostCreateView(CreateView):
-#     model =Post
-#     fields = '__all__'
-#     success_url = reverse_lazy('post_list')
-
-# class PostUpdateView(UpdateView):
-#     model = Post
-#     fields = '__all__'
-#     success_url = reverse_lazy('post_list')
-
-# class PostDeleteView(DeleteView):
-#     model = Post
-#     success_url = reverse_lazy('post_list')
-
 class PostListAPIView(generics.ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
@@ -213,23 +127,6 @@ class PostDestroyAPIView(generics.DestroyAPIView):
     
     
 ########## Vues des user #########
-
-# class UserListView(ListView):
-#     model = User
-
-# class UserCreateView(CreateView):
-#     model =User
-#     fields = '__all__'
-#     success_url = reverse_lazy('user_list')
-
-# class UserUpdateView(UpdateView):
-#     model = User
-#     fields = '__all__'
-#     success_url = reverse_lazy('user_list')
-
-# class UserDeleteView(DeleteView):
-#     model = User
-#     success_url = reverse_lazy('user_list')
 
 class UserListAPIView(generics.ListAPIView):
     queryset = User.objects.all()
