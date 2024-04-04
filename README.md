@@ -10,6 +10,7 @@ Pour démarrer Django, suivez ces étapes :
 3. Créer l'environnement virtuel
 3. Une fois dans l'environnement virtuel positionner vous sur `django-web-app/merchex`
 4. Exécutez `python manage.py runserver` pour démarrer le serveur de développement.
+5. Pour retrouver les urls des crud se rendre dans `django-web-app/merchex/urls.py`
 
 ## Mise en place de la base de données Workbench
 
