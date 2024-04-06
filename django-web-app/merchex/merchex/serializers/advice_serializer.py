@@ -4,4 +4,5 @@ from ..models import Advice
 class AdviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Advice
-        fields = ['title', 'description','idcategory']
+        fields = ['title', 'description','idcategory','usrid']
+    
