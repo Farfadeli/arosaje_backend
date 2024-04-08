@@ -9,7 +9,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from .models import Advice, Care, Category, Pictures, Post, User
-from rest_framework import generics, status
+from rest_framework import generics, status, request
 from .serializers.advice_serializer import AdviceSerializer
 from .serializers.care_serializer import CareSerializer
 from .serializers.category_serializer import CategorySerializer
@@ -20,27 +20,44 @@ from .serializers.user_serializer import UserSerializer
 
 
 ########## Vues des conseils #########
+@api_view(['GET'])
+def AdviceListAPIView(request):
+    if request.method == 'GET':
+        genders = Advice.objects.all()
+        serializer = AdviceSerializer(genders, many=True)
+        return Response(serializer.data)
+@api_view(['GET'])
+def AdviceDetailAPIView(request,pk):
+    try:
+        gender = Advice.objects.get(pk=pk)
+    except Advice.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
-class AdviceListAPIView(generics.ListAPIView):
-    queryset = Advice.objects.all()
-    serializer_class = AdviceSerializer
+    if request.method == 'GET':
+        serializer = AdviceSerializer(gender)
+        return Response(serializer.data)
 
-class AdviceDetailAPIView(generics.RetrieveAPIView):
-    queryset = Advice.objects.all()
-    serializer_class = AdviceSerializer
-    
-class AdviceCreateAPIView(generics.CreateAPIView):
-    queryset = Advice.objects.all()
-    serializer_class = AdviceSerializer
+@api_view('POST')
+def AdviceCreateAPIView(request):
+    if request.method == 'POST':
+        serializer = AdviceSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class AdviceUpdateAPIView(generics.UpdateAPIView):
-    queryset = Advice.objects.all()
-    serializer_class = AdviceSerializer
-    
-class AdviceDestroyAPIView(generics.DestroyAPIView):
-    queryset = Advice.objects.all()
-    serializer_class = AdviceSerializer
 
+@api_view(['DELETE'])
+def DeteleAdvice(request,pk):
+    if request.method=='DELETE':
+        try:
+            advice=Advice.objects.get(pk=pk)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        Advice.delete(advice)
+        advices=Advice.objects.all()
+        serializer=AdviceSerializer(advices,many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
 
 ########## Vues des gardes #########
 
