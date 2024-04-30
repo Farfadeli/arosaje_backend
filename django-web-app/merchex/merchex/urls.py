@@ -16,8 +16,10 @@ Including another URLconf
 """
 
 from django.urls import path
+from rest_framework_simplejwt.views import token_obtain_pair
 
-from .views import AdviceListAPIView, AdviceDetailAPIView, AdviceCreateAPIView, AdviceUpdateAPIView, AdviceDestroyAPIView
+from .views import AdviceListAPIView, AdviceDetailAPIView, AdviceCreateAPIView, AdviceUpdateAPIView, \
+    AdviceDestroyAPIView, register, login_view
 from .views import CareListAPIView, CareDetailAPIView, CareCreateAPIView, CareUpdateAPIView, CareDestroyAPIView
 from .views import CategoryListAPIView, CategoryDetailAPIView, CategoryCreateAPIView, CategoryUpdateAPIView, CategoryDestroyAPIView
 from .views import PicturesListAPIView, PicturesDetailAPIView, PicturesCreateAPIView, PicturesUpdateAPIView, PicturesDestroyAPIView
@@ -68,7 +70,9 @@ urlpatterns = [
     path('user/create/', UserCreateAPIView.as_view(), name='user-create'),
     path('user/<int:pk>/update/', UserUpdateAPIView.as_view(), name='user-update'),
     path('user/<int:pk>/delete/', UserDestroyAPIView.as_view(), name='user-delete'),
-    
+    path('user/signup', register, name='register'),
+    path('user/signin', login_view, name='login'),
+    path('token/', token_obtain_pair, name='token_obtain_pair'),
 
 ]
 
